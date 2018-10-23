@@ -1,0 +1,42 @@
+<div [@routerTransition]>
+    <app-alert></app-alert>
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12">
+            <div class="card mb-12">
+                <div class="card-header">Pending User Requests For Approval</div>
+                <table class="card-body table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th style="width: 300px">Shop Name</th>
+                            <th>Commission</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of pendingUsers | paginate: { itemsPerPage: 10, currentPage: p }, let i = index">
+                            <td>{{p.email}}</td>
+                            <td>{{p.phone}}</td>
+                            <td>{{p.shopname}}</td>
+                            <td>{{p.commission}}%</td>
+                            <td>
+                                <div class="form-group">
+                                    <select (change)="onStatusChange($event.target.value,p)" class="form-control custom-width80">
+                                        <option>Pending</option>
+                                        <option>Approve</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="pendingUsers?.length == 0" style="text-align: center; color:#dc3545">
+                    <p>No pending requests are available against this status!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

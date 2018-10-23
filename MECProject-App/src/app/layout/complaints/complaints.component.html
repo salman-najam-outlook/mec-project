@@ -1,0 +1,119 @@
+<div [@routerTransition]>
+    <app-modal></app-modal>
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title" style="color: #6610f2">
+                <span style="color: #6610f2">
+                    <i class="fa fa-eye"></i>
+                </span>&nbsp;&nbsp;{{modalHeader}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form role="form">
+                        <fieldset class="form-group">
+                            <label>Customer's Name</label>
+                            <input class="form-control" placeholder="Enter text">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label>Customer's Contact Number</label>
+                            <input class="form-control" placeholder="Enter text">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label>Customer's Address</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label>Services Selected</label>
+                            <select multiple="" class="form-control" disabled="true">
+                                <option>Service One</option>
+                                <option>Service Second</option>
+                                <option selected="selected">Service Third</option>
+                                <option>Service Fourth</option>
+                                <option selected="selected">Service Fifth</option>
+                                <option>Service Sixth</option>
+                                <option>Service Seventh</option>
+                                <option selected="selected">Service Eighth</option>
+                                <option>Service Ninth</option>
+                                <option>Service Tenth</option>
+                            </select>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+        </div>
+    </ng-template>
+    <app-alert></app-alert>
+    <button *ngIf="user.Roleid !== 2" type="button" class="btn btn-md btn-warning" (click)="onNewComplaint()">New Complaint</button>
+    <hr>
+    <div *ngIf="isHidden">
+        <form role="form" novalidate [formGroup]="form" (ngSubmit)="onOrderFormSubmit()">
+            <div class="row">
+                <div class="col col-xl-12 col-lg-12">
+                    <fieldset class="form-group">
+                        <label>Order Number:</label>
+                        <input formControlName="ordernumber" class="form-control" placeholder="Order Number">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <label>Complaint's Details:</label>
+                        <input formControlName="reason" class="form-control" placeholder="Reason">
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <div class="hidden-xs" style="margin-top:45px;"></div>
+                        <button type="button" class="btn btn-md btn-danger pull-right" (click)="onCancelComplaint()">Cancel</button>
+                        <button type="submit" class="btn btn-md btn-success pull-left" [disabled]="form.invalid">Submit</button>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+        <hr>
+    </div>
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12">
+            <div class="card mb-12">
+                <div class="card-header">Complaints</div>
+                <table class="card-body table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Complaint ID</th>
+                            <th>Tracking ID</th>
+                            <th style="width: 475px">Reason</th>
+                            <th *ngIf="user?.Roleid == 3">Status</th>
+                            <th *ngIf="user?.Roleid == 1">Change Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let cgrid of compgrid | paginate: { itemsPerPage: 10, currentPage: p }">
+                            <td>{{cgrid.complaintId}}</td>
+                            <td>{{cgrid.trackingId}}</td>
+                            <td>{{cgrid.reason}}</td>
+                            <td *ngIf="user?.Roleid == 3">{{cgrid.status}}</td>
+                            <td *ngIf="user?.Roleid == 1">
+                                <div class="form-group">
+                                    <select select (change)="onStatusChange($event.target.value,cgrid)" (ngModel)="complaintStatus"
+                                        value="{{complaintStatus}}" class="form-control custom-width80">
+                                        <option value="pending">Pending</option>
+                                        <option value="inprocess">InProcess</option>
+                                        <option value="completed">Completed</option>
+                                        <option value="cancelled">Cancelled</option>
+                                    </select>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="compgrid?.length == 0" style="text-align: center; color:#dc3545">
+                    <p>No complaints are available against this status!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

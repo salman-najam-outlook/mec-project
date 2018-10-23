@@ -1,0 +1,147 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MECProjectDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="role_ID" />
+    </Key>
+    <Property Name="role_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="role_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="role_field1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityContainer Name="MECProjectDBEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Roles" EntityType="Self.Role" />
+    <EntitySet Name="Complaints" EntityType="MECProjectDBModel.Complaint" />
+    <EntitySet Name="Incomes" EntityType="MECProjectDBModel.Income" />
+    <EntitySet Name="Orders" EntityType="MECProjectDBModel.Order" />
+    <EntitySet Name="Services" EntityType="MECProjectDBModel.Service" />
+    <EntitySet Name="Service_Category" EntityType="MECProjectDBModel.Service_Category" />
+    <EntitySet Name="Shopkeepers" EntityType="MECProjectDBModel.Shopkeeper" />
+    <FunctionImport Name="OrdertrackingNumber" ReturnType="Collection(MECProjectDBModel.OrdertrackingNumber_Result)">
+      <Parameter Name="date" Mode="In" Type="DateTime" />
+    </FunctionImport>
+    <FunctionImport Name="sp_GetOrdersGrid" ReturnType="Collection(MECProjectDBModel.sp_GetOrdersGrid_Result)">
+      <Parameter Name="status" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="Users" EntityType="MECProjectDBModel.User" />
+  </EntityContainer>
+  <EntityType Name="Complaint">
+    <Key>
+      <PropertyRef Name="complaint_ID" />
+    </Key>
+    <Property Name="complaint_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_ID" Type="Int32" />
+    <Property Name="order_resson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="complaint_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="complaint_field1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="complaint_field2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Income">
+    <Key>
+      <PropertyRef Name="income_ID" />
+    </Key>
+    <Property Name="income_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="order_ID" Type="Int32" />
+    <Property Name="recived_amount" Type="Int32" />
+    <Property Name="expected_amount" Type="Int32" />
+    <Property Name="income_field1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="income_field2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="order_ID" />
+    </Key>
+    <Property Name="order_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="clint_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="clint_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="clint_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="user_ID" Type="Int32" />
+    <Property Name="service_ID" Type="Int32" />
+    <Property Name="order_amount" Type="Int32" />
+    <Property Name="order_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="order_fulfiller" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_amount" Type="Int32" />
+    <Property Name="order_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="dateOfOrder" Type="DateTime" Precision="0" />
+    <Property Name="trackingId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="service_ID" />
+    </Key>
+    <Property Name="service_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="service_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="service_rate" Type="Int32" />
+    <Property Name="category_ID" Type="Int32" />
+    <Property Name="service_field1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Service_Category">
+    <Key>
+      <PropertyRef Name="category_ID" />
+    </Key>
+    <Property Name="category_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="category_field1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Shopkeeper">
+    <Key>
+      <PropertyRef Name="shopkeeper_ID" />
+    </Key>
+    <Property Name="shopkeeper_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="shopkeeper_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_shopname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_shopaddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_phoneno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_bank_account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_commission" Type="Int32" />
+    <Property Name="shopkeeper_field1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_field2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="OrdertrackingNumber_Result">
+    <Property Type="Int32" Name="order_ID" Nullable="false" />
+    <Property Type="String" Name="clint_name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="clint_phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="clint_address" Nullable="true" />
+    <Property Type="Int32" Name="user_ID" Nullable="true" />
+    <Property Type="Int32" Name="service_ID" Nullable="true" />
+    <Property Type="Int32" Name="order_amount" Nullable="true" />
+    <Property Type="String" Name="order_status" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="order_fulfiller" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="shopkeeper_amount" Nullable="true" />
+    <Property Type="String" Name="order_number" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="dateOfOrder" Nullable="true" />
+    <Property Type="String" Name="trackingId" Nullable="true" MaxLength="50" />
+  </ComplexType>
+  <ComplexType Name="sp_GetOrdersGrid_Result">
+    <Property Type="Int32" Name="order_ID" Nullable="false" />
+    <Property Type="String" Name="trackingId" Nullable="true" MaxLength="50" />
+    <Property Type="DateTime" Name="dateOfOrder" Nullable="true" />
+    <Property Type="String" Name="clint_name" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="clint_phone" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="clint_address" Nullable="true" />
+    <Property Type="Int32" Name="order_amount" Nullable="true" />
+    <Property Type="String" Name="order_status" Nullable="true" MaxLength="50" />
+    <Property Type="Int32" Name="service_ID" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="user_ID" />
+    </Key>
+    <Property Name="user_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="user_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="user_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="userstatus" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+    <Property Name="shopkeeper_fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_shopname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_shopaddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_bank_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_bank_branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_bank_account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="shopkeeper_commission" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="role_ID" Type="Int32" />
+  </EntityType>
+</Schema>

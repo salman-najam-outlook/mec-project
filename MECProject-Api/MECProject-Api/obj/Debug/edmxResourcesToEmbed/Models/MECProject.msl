@@ -1,0 +1,106 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="MECProjectDBModelStoreContainer" CdmEntityContainer="MECProjectDBEntities">
+    <EntitySetMapping Name="Complaints">
+      <EntityTypeMapping TypeName="MECProjectDBModel.Complaint">
+        <MappingFragment StoreEntitySet="Complaints">
+          <ScalarProperty Name="complaint_ID" ColumnName="complaint_ID" />
+          <ScalarProperty Name="order_ID" ColumnName="order_ID" />
+          <ScalarProperty Name="order_resson" ColumnName="order_resson" />
+          <ScalarProperty Name="complaint_status" ColumnName="complaint_status" />
+          <ScalarProperty Name="complaint_field1" ColumnName="complaint_field1" />
+          <ScalarProperty Name="complaint_field2" ColumnName="complaint_field2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Incomes">
+      <EntityTypeMapping TypeName="MECProjectDBModel.Income">
+        <MappingFragment StoreEntitySet="Income">
+          <ScalarProperty Name="income_ID" ColumnName="income_ID" />
+          <ScalarProperty Name="order_ID" ColumnName="order_ID" />
+          <ScalarProperty Name="recived_amount" ColumnName="recived_amount" />
+          <ScalarProperty Name="expected_amount" ColumnName="expected_amount" />
+          <ScalarProperty Name="income_field1" ColumnName="income_field1" />
+          <ScalarProperty Name="income_field2" ColumnName="income_field2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orders">
+      <EntityTypeMapping TypeName="MECProjectDBModel.Order">
+        <MappingFragment StoreEntitySet="Orders">
+          <ScalarProperty Name="order_ID" ColumnName="order_ID" />
+          <ScalarProperty Name="clint_name" ColumnName="clint_name" />
+          <ScalarProperty Name="clint_phone" ColumnName="clint_phone" />
+          <ScalarProperty Name="clint_address" ColumnName="clint_address" />
+          <ScalarProperty Name="shopkeeper_ID" ColumnName="shopkeeper_ID" />
+          <ScalarProperty Name="service_ID" ColumnName="service_ID" />
+          <ScalarProperty Name="order_amount" ColumnName="order_amount" />
+          <ScalarProperty Name="order_status" ColumnName="order_status" />
+          <ScalarProperty Name="order_fulfiller" ColumnName="order_fulfiller" />
+          <ScalarProperty Name="shopkeeper_amount" ColumnName="shopkeeper_amount" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Roles">
+      <EntityTypeMapping TypeName="MECProjectDBModel.Role">
+        <MappingFragment StoreEntitySet="Roles">
+          <ScalarProperty Name="role_ID" ColumnName="role_ID" />
+          <ScalarProperty Name="role_name" ColumnName="role_name" />
+          <ScalarProperty Name="role_field1" ColumnName="role_field1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Services">
+      <EntityTypeMapping TypeName="MECProjectDBModel.Service">
+        <MappingFragment StoreEntitySet="Service">
+          <ScalarProperty Name="service_ID" ColumnName="service_ID" />
+          <ScalarProperty Name="service_name" ColumnName="service_name" />
+          <ScalarProperty Name="service_rate" ColumnName="service_rate" />
+          <ScalarProperty Name="category_ID" ColumnName="category_ID" />
+          <ScalarProperty Name="service_field1" ColumnName="service_field1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Service_Category">
+      <EntityTypeMapping TypeName="MECProjectDBModel.Service_Category">
+        <MappingFragment StoreEntitySet="Service_Category">
+          <ScalarProperty Name="category_ID" ColumnName="category_ID" />
+          <ScalarProperty Name="category_name" ColumnName="category_name" />
+          <ScalarProperty Name="category_field1" ColumnName="category_field1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Shopkeepers">
+      <EntityTypeMapping TypeName="MECProjectDBModel.Shopkeeper">
+        <MappingFragment StoreEntitySet="Shopkeeper">
+          <ScalarProperty Name="shopkeeper_ID" ColumnName="shopkeeper_ID" />
+          <ScalarProperty Name="shopkeeper_name" ColumnName="shopkeeper_name" />
+          <ScalarProperty Name="shopkeeper_fname" ColumnName="shopkeeper_fname" />
+          <ScalarProperty Name="shopkeeper_shopname" ColumnName="shopkeeper_shopname" />
+          <ScalarProperty Name="shopkeeper_shopaddress" ColumnName="shopkeeper_shopaddress" />
+          <ScalarProperty Name="shopkeeper_email" ColumnName="shopkeeper_email" />
+          <ScalarProperty Name="shopkeeper_phoneno" ColumnName="shopkeeper_phoneno" />
+          <ScalarProperty Name="shopkeeper_bank_account" ColumnName="shopkeeper_bank_account" />
+          <ScalarProperty Name="shopkeeper_password" ColumnName="shopkeeper_password" />
+          <ScalarProperty Name="shopkeeper_commission" ColumnName="shopkeeper_commission" />
+          <ScalarProperty Name="shopkeeper_field1" ColumnName="shopkeeper_field1" />
+          <ScalarProperty Name="shopkeeper_field2" ColumnName="shopkeeper_field2" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="MECProjectDBModel.User">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="user_field2" ColumnName="user_field2" />
+          <ScalarProperty Name="user_field1" ColumnName="user_field1" />
+          <ScalarProperty Name="role_ID" ColumnName="role_ID" />
+          <ScalarProperty Name="user_password" ColumnName="user_password" />
+          <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+          <ScalarProperty Name="user_email" ColumnName="user_email" />
+          <ScalarProperty Name="user_name" ColumnName="user_name" />
+          <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

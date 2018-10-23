@@ -1,0 +1,151 @@
+<div [@routerTransition]>
+    <app-modal></app-modal>
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                <span>
+                    <i class="fa fa-times"></i>
+                </span>&nbsp;&nbsp;{{modalHeader}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <p>Are you sure you want to delete this user?</p>
+                            <b style="color:#ffc107">Details are:</b><br>
+                            Full Name: <b>{{userToDelete?.user_name}}</b><br>
+                            Email: <b>{{userToDelete?.user_email}}</b><br>
+                            Shop Name: <b>{{userToDelete?.shopkeeper_shopname}}</b><br>
+                            Shop Address: <b>{{userToDelete?.shopkeeper_shopaddress}}</b><br><br>
+                            <button type="button" class="btn btn-secondary btn-danger" (click)="deleteUserFun(userToDelete)" (click)="c('Close click')">&nbsp;Yes&nbsp;</button>
+                            &nbsp;&nbsp;&nbsp;
+                            <button type="button" class="btn btn-secondary btn-success" (click)="c('Close click')">&nbsp;No&nbsp;</button>
+                    </div>
+                </div>
+            </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+        </div>
+    </ng-template>
+    <app-alert></app-alert>
+    <form *ngIf="isHidden" role="form" novalidate [formGroup]="form" (ngSubmit)="onUserUpdate()">
+        <h3>Update User Details</h3>
+        <div class="row">
+            <div class="col-md-6 col-lg-6">
+                <div class="form-content">
+                    <div class="form-group">
+                        <label>Full Name:</label>
+                        <input formControlName="username" type="text" class="form-control input-underline input-lg"
+                            placeholder="Full Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Email Address:</label>
+                        <input formControlName="email" type="text" class="form-control input-underline input-lg"
+                            placeholder="Email Address">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number:</label>
+                        <input formControlName="phone" type="text" class="form-control input-underline input-lg"
+                            placeholder="Phone Number">
+                    </div>
+                    <div class="form-group">
+                        <label>Password:</label>
+                        <input formControlName="password" type="text" class="form-control input-underline input-lg"
+                            placeholder="Password">
+                    </div>
+                    <div class="form-group">
+                        <label>Commission Percentage:</label>
+                        <input formControlName="commission" type="text" class="form-control input-underline input-lg"
+                            placeholder="Commission Percentage">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6">
+                <div class="form-content">
+                    <div class="form-group">
+                        <label>Shop Name:</label>
+                        <input formControlName="shopname" type="text" class="form-control input-underline input-lg"
+                            placeholder="Shop Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Shop Address:</label>
+                        <input formControlName="shopaddress" type="text" class="form-control input-underline input-lg"
+                            placeholder="Shop Address">
+                    </div>
+                    <div class="form-group">
+                        <label>Bank Name:</label>
+                        <input formControlName="bankname" type="text" class="form-control input-underline input-lg"
+                            placeholder="Bank Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Bank Area Branch Name:</label>
+                        <input formControlName="bankbranch" type="text" class="form-control input-underline input-lg"
+                            placeholder="Bank Area Branch Name">
+                    </div>
+                    <div class="form-group">
+                        <label>Bank Account Number:</label>
+                        <input formControlName="accountnumber" type="text" class="form-control input-underline input-lg"
+                            placeholder="Bank Account Number">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <fieldset class="form-group">
+            <div class="hidden-xs" style="margin-top:25px;"></div>
+            <button type="button" class="btn btn-md btn-danger pull-right" (click)="onCancelUserEdit()">Cancel</button>
+            <button *ngIf="isUpdateButton" type="submit" class="btn btn-md btn-success pull-left" [disabled]="form.invalid">Update Details</button>
+        </fieldset>
+    </form>
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12">
+            <div class="card mb-12">
+                <div class="card-header">Users</div>
+                <table class="card-body table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th style="width: 300px">Shop Name</th>
+                            <th>Commission</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let user of usersList | paginate: { itemsPerPage: 10, currentPage: p }, let i = index">
+                            <td>{{user.user_email}}</td>
+                            <td>{{user.user_phone}}</td>
+                            <td>{{user.shopkeeper_shopname}}</td>
+                            <td>{{user.shopkeeper_commission}}%</td>
+                            <td>
+                                <a href="javascript:void(0)" (click)="onUserView(user)">
+                                    <span style="color: #6610f2">
+                                        <i class="fa fa-eye"></i>
+                                    </span>
+                                </a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a href="javascript:void(0)" (click)="onUserEdit(user)">
+                                    <span style="color: #fd7e14">
+                                        <i class="fa fa-pencil"></i>
+                                    </span>
+                                </a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a href="javascript:void(0)" (click)="openDeleteConfirmation(user, content)">
+                                    <span style="color: #dc3545">
+                                        <i class="fa fa-times"></i>
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="usersList?.length == 0" style="text-align: center; color:#dc3545">
+                    <p>No users are available against this status!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

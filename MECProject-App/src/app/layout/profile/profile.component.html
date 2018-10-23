@@ -1,0 +1,58 @@
+<div [@routerTransition]>
+    <app-alert></app-alert>
+    <div style="margin-bottom:20px;" class="card-header">Profile</div>
+    <form role="form" novalidate [formGroup]="form" (ngSubmit)="onUpdateProfile()">
+        <div class="row">
+            <div class="col col-xl-6 col-lg-6">
+                <fieldset class="form-group">
+                    <label>Full Name:</label>
+                    <input formControlName="username" class="form-control" placeholder="Full name">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Email</label>
+                    <input formControlName="email" class="form-control" placeholder="Email Address">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Phone</label>
+                    <input formControlName="phone" class="form-control" placeholder="Phone Number">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Password</label>
+                    <input formControlName="password" type="password" class="form-control" placeholder="Password">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Commission</label>
+                    <input formControlName="commission" class="form-control" placeholder="Commission Fixed">
+                </fieldset>
+            </div>
+            <div class="col col-xl-6 col-lg-6">
+                <fieldset class="form-group">
+                    <label>Shop Name</label>
+                    <input formControlName="shopname" class="form-control" placeholder="Shop Name">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label>Shop Address</label>
+                    <input formControlName="shopaddress" class="form-control" placeholder="Shop Address">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Bank Name</label>
+                    <input formControlName="bankname" class="form-control" placeholder="Bank Name">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Bank Area Branch Name</label>
+                    <input formControlName="bankbranch" class="form-control" placeholder="Bank Area Branch Name">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Account Number</label>
+                    <input formControlName="accountnumber" class="form-control" placeholder="Account Number">
+                </fieldset>
+            </div>
+        </div>
+        <div>
+            <div class="hidden-xs" style="margin-top:32px;"></div>
+            <button type="button" class="btn btn-md btn-danger pull-right" (click)="onCancleProfile()">Cancle</button>
+            <button type="submit" class="btn btn-md btn-success pull-left" [disabled]="form.invalid">Update Profile</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,162 @@
+<div [@routerTransition]>
+    <app-modal></app-modal>
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title">
+                <span>
+                    <i class="fa fa-times"></i>
+                </span>&nbsp;&nbsp;{{modalHeader}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Are you sure you want to delete this order?</p>
+                    <b style="color:#ffc107">Details are:</b><br>
+                    Client's Name: <b>{{orderToDelete?.user_name}}</b><br>
+                    Tracking Number: <b>{{orderToDelete?.trackingId}}</b><br>
+                    Status: <b>{{orderToDelete?.order_status}}</b><br>
+                    Amount: <b>Rs.{{orderToDelete?.order_amount | number}}/-</b><br><br>
+                    <button type="button" class="btn btn-secondary btn-danger" (click)="deleteOrder(orderToDelete)"
+                        (click)="c('Close click')">&nbsp;Yes&nbsp;</button>
+                    &nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-secondary btn-success" (click)="c('Close click')">&nbsp;No&nbsp;</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+        </div>
+    </ng-template>
+    <app-alert></app-alert>
+    <div *ngIf="user.Roleid !== 1 && user.Roleid !== 2">
+        <button *ngIf="isNewOrder" type="button" class="btn btn-md btn-warning" (click)="onNewOrder()">New Order</button>
+    </div>
+    <div *ngIf="isTrackingId">
+        <h3>Tracking Id: {{viewOrder?.trackingId}} | Shopkeeper Name: {{viewOrder?.shopkeeperName}}</h3>
+    </div>
+    <hr>
+    <div *ngIf="isHidden" id="contentToConvert">
+        <form role="form" novalidate [formGroup]="form" (ngSubmit)="onOrderFormSumit()">
+            <div class="row">
+                <div class="col col-xl-6 col-lg-6">
+                    <fieldset class="form-group">
+                        <label>Client's Name:</label>
+                        <input formControlName="name" class="form-control" placeholder="Full name">
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <label>Client's Address:</label>
+                        <input formControlName="address" class="form-control" placeholder="Address">
+                    </fieldset>
+
+                    <fieldset class="form-group">
+                        <label>Total Amount:</label>
+                        <input formControlName="amount" class="form-control" placeholder="Amount">
+                    </fieldset>
+                </div>
+                <div class="col col-xl-6 col-lg-6">
+                    <fieldset class="form-group">
+                        <label>Client's Phone:</label>
+                        <input formControlName="phone" class="form-control" placeholder="Phone number">
+                    </fieldset>
+
+                    <div class="form-group">
+                        <label>Select Service:</label>
+                        <select formControlName="service" class="form-control">
+                            <option hidden value="">Select service</option>
+                            <option value="1">Electric Service</option>
+                            <option value="2">AC Service + Installation</option>
+                            <option value="3">Battery Sale/Purchase</option>
+                            <option value="4">UPS Repairing + Installation</option>
+                            <option value="5">CCTV Installation + Service</option>
+                            <option value="6">Motor Rewinding</option>
+                            <option value="7">Welding</option>
+                            <option value="8">Senitary Works + Service</option>
+                            <option value="9">Carpenter</option>
+                            <option value="10">Glass Aluminium</option>
+                            <option value="11">Carpet Washing + Service</option>
+                            <option value="12">Scrap WholeSale Dealer</option>
+                            <option value="13">Other Services</option>
+                        </select>
+                    </div>
+
+                    <fieldset class="form-group">
+                        <div class="hidden-xs" style="margin-top:45px;"></div>
+                        <button type="button" class="btn btn-md btn-danger pull-right" (click)="onCancleOrder()">Cancle</button>
+                        <button *ngIf="isButtonHidden" type="submit" class="btn btn-md btn-success pull-left"
+                            [disabled]="form.invalid">{{orderButton}}</button>
+                        <button type="button" *ngIf="printBtnShow" (click)="captureScreen()" class="btn btn-md btn-success pull-left">Print</button>
+                    </fieldset>
+                </div>
+            </div>
+        </form>
+
+        <hr>
+    </div>
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12">
+            <div class="card mb-12">
+                <div class="card-header">{{ orderStatus | titlecase }} Orders</div>
+                <table class="card-body table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Tracking Number</th>
+                            <th>Date</th>
+                            <th>Client Name</th>
+                            <th>Amount</th>
+                            <th *ngIf="user.Roleid === 1 || user.Roleid === 2">Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of orders | paginate: { itemsPerPage: 10, currentPage: p }, let i = index">
+                            <td>{{x.trackingId}}</td>
+                            <td>{{x.dateOfOrder | slice:0:10}}</td>
+                            <td>{{x.user_name}}</td>
+                            <td>Rs.{{x.order_amount | number}}/-</td>
+                            <td *ngIf="user.Roleid === 1 || user.Roleid === 2">
+                                <div class="form-group">
+                                    <select (change)="onStatusChange($event.target.value,x)" (ngModel)="orderStatus"
+                                        value="{{orderStatus}}" class="form-control custom-width80">
+                                        <option value="pending"> Pending</option>
+                                        <option value="inprocess"> InProcess</option>
+                                        <option value="completed"> Completed</option>
+                                        <option value="cancelled"> Cancelled</option>
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0)" (click)="onOrderView(x)">
+                                    <span style="color: #6610f2">
+                                        <i class="fa fa-eye"></i>
+                                    </span>
+                                </a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a *ngIf="user.Roleid === 1" href="javascript:void(0)" (click)="onOrderEdit(x)">
+                                    <span style="color: #fd7e14">
+                                        <i class="fa fa-pencil"></i>
+                                    </span>
+                                </a>
+                                &nbsp;&nbsp;&nbsp;
+                                <a *ngIf="user.Roleid === 1" href="javascript:void(0)" (click)="openDeleteConfirmation(x, content)">
+                                    <span style="color: #dc3545">
+                                        <i class="fa fa-times"></i>
+                                    </span>
+                                </a>
+                            </td>
+                        </tr>
+
+                    </tbody>
+                </table>
+                <div *ngIf="orders?.length == 0" style="text-align: center; color:#dc3545">
+                    <p>No orders are available against this status!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

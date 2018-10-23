@@ -1,0 +1,57 @@
+<div [@routerTransition]>
+    <app-alert></app-alert>
+    <h3>Create A New Order</h3>
+    <form role="form" novalidate [formGroup]="form" (ngSubmit)="onOrderFormSumit()">
+        <div class="row">
+
+            <div class="col col-xl-6 col-lg-6">
+                <fieldset class="form-group">
+                    <label>Client's Name:</label>
+                    <input formControlName="name" class="form-control" placeholder="Full name">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label>Client's Address:</label>
+                    <input formControlName="address" class="form-control" placeholder="Address">
+                </fieldset>
+
+                <fieldset class="form-group">
+                    <label>Total Amount:</label>
+                    <input formControlName="amount" class="form-control" placeholder="Amount">
+                </fieldset>
+            </div>
+            <div class="col col-xl-6 col-lg-6">
+                <fieldset class="form-group">
+                    <label>Client's Phone:</label>
+                    <input formControlName="phone" class="form-control" placeholder="Phone number">
+                </fieldset>
+
+                <div class="form-group">
+                    <label>Select Service:</label>
+                    <select formControlName="service" class="form-control">
+                        <option hidden value="">Select service</option>
+                        <option value="1">Electric Service</option>
+                        <option value="2">AC Service + Installation</option>
+                        <option value="3">Battery Sale/Purchase</option>
+                        <option value="4">UPS Repairing + Installation</option>
+                        <option value="5">CCTV Installation + Service</option>
+                        <option value="6">Motor Rewinding</option>
+                        <option value="7">Welding</option>
+                        <option value="8">Senitary Works + Service</option>
+                        <option value="9">Carpenter</option>
+                        <option value="10">Glass Aluminium</option>
+                        <option value="11">Carpet Washing + Service</option>
+                        <option value="12">Scrap WholeSale Dealer</option>
+                        <option value="13">Other Services</option>
+                    </select>
+                </div>
+                <fieldset class="form-group">
+                    <div class="hidden-xs" style="margin-top:32px;"></div>
+                    <button type="button" class="btn btn-md btn-danger pull-right" (click)="clearFields()">Clear Fields</button>
+                    <button type="submit" class="btn btn-md btn-success pull-left" [disabled]="form.invalid">Confirm
+                        Order</button>
+                </fieldset>
+            </div>
+        </div>
+    </form>
+</div>

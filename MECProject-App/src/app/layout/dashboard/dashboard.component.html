@@ -1,0 +1,156 @@
+<div [@routerTransition]>
+    <div>
+        <h2 class="text-muted">Dashboard&nbsp;<button *ngIf="user.Roleid === 3" type="button" class="btn btn-md btn-warning" routerLink="/neworder">New
+            Order</button>
+        </h2>
+    </div>
+
+    <app-alert></app-alert>
+    <div class="row">
+        <div class="col-md-12">
+            <ngb-carousel>
+                <ng-template ngbSlide *ngFor="let slider of sliders">
+                    <img class="img-fluid mx-auto d-block" [src]="slider.imagePath" alt="Random first slide" width="100%">
+                </ng-template>
+            </ngb-carousel>
+        </div>
+    </div>
+    <hr>
+    <div class="row">
+        <div class="col-xl-3 col-lg-6">
+            <div class="card text-white bg-primary">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col col-xs-3">
+                            <i class="fa fa-clock-o fa-4x"></i>
+                        </div>
+                        <div class="col col-xs-9 text-right">
+                            <div class="d-block huge">{{dashboardOrderCount.pending}}</div>
+                            <div class="d-block">Pending Orders!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="float-left">View Details</span>
+                    <a href="javascript:void(0)" class="float-right card-inverse" routerLink="/orders/pending">
+                        <span style="color: white;"><i class="fa fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card text-white bg-warning">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col col-xs-3">
+                            <i class="fa fa-cogs fa-4x"></i>
+                        </div>
+                        <div class="col col-xs-9 text-right">
+                            <div class="d-block huge">{{dashboardOrderCount.InProcess}}</div>
+                            <div class="d-block">InProcess Orders!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="float-left">View Details</span>
+                    <a href="javascript:void(0)" class="float-right card-inverse" routerLink="/orders/inprocess">
+                        <span style="color: white;"><i class="fa fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card text-white bg-success">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col col-xs-3">
+                            <i class="fa fa-check fa-4x"></i>
+                        </div>
+                        <div class="col col-xs-9 text-right">
+                            <div class="d-block huge">{{dashboardOrderCount.Completed}}</div>
+                            <div class="d-block">Completed Orders!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="float-left">View Details</span>
+                    <a href="javascript:void(0)" class="float-right card-inverse" routerLink="/orders/completed">
+                        <span style="color: white;"><i class="fa fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-3 col-lg-6">
+            <div class="card text-white bg-danger">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col col-xs-3">
+                            <i class="fa fa-times fa-4x"></i>
+                        </div>
+                        <div class="col col-xs-9 text-right">
+                            <div class="d-block huge">{{dashboardOrderCount.Cancelled}}</div>
+                            <div class="d-block">Cancelled Orders!</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <span class="float-left">View Details</span>
+                    <a href="javascript:void(0)" class="float-right card-inverse" routerLink="/orders/cancelled">
+                        <span style="color: white;"><i class="fa fa-arrow-circle-right"></i></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <app-modal></app-modal>
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title" style="color: #6610f2">
+                <span style="color: #6610f2">
+                    <i class="fa fa-eye"></i>
+                </span>&nbsp;&nbsp;{{modalHeader}}</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="row">
+                <div class="col-lg-12">
+                    <form role="form">
+                        <fieldset class="form-group">
+                            <label>Customer's Name</label>
+                            <input class="form-control" placeholder="Enter text">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label>Customer's Contact Number</label>
+                            <input class="form-control" placeholder="Enter text">
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label>Customer's Address</label>
+                            <textarea class="form-control" rows="3"></textarea>
+                        </fieldset>
+                        <fieldset class="form-group">
+                            <label>Services Selected</label>
+                            <select multiple="" class="form-control" disabled="true">
+                                <option>Service One</option>
+                                <option>Service Second</option>
+                                <option selected="selected">Service Third</option>
+                                <option>Service Fourth</option>
+                                <option selected="selected">Service Fifth</option>
+                                <option>Service Sixth</option>
+                                <option>Service Seventh</option>
+                                <option selected="selected">Service Eighth</option>
+                                <option>Service Ninth</option>
+                                <option>Service Tenth</option>
+                            </select>
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="c('Close click')">Close</button>
+        </div>
+    </ng-template>
+</div>

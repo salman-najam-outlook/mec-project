@@ -1,0 +1,549 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="MECProjectDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Complaints">
+          <Key>
+            <PropertyRef Name="complaint_ID" />
+          </Key>
+          <Property Name="complaint_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_ID" Type="int" />
+          <Property Name="order_resson" Type="nvarchar(max)" />
+          <Property Name="complaint_status" Type="nvarchar" MaxLength="50" />
+          <Property Name="complaint_field1" Type="nvarchar" MaxLength="50" />
+          <Property Name="complaint_field2" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Income">
+          <Key>
+            <PropertyRef Name="income_ID" />
+          </Key>
+          <Property Name="income_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="order_ID" Type="int" />
+          <Property Name="recived_amount" Type="int" />
+          <Property Name="expected_amount" Type="int" />
+          <Property Name="income_field1" Type="nvarchar" MaxLength="50" />
+          <Property Name="income_field2" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Orders">
+          <Key>
+            <PropertyRef Name="order_ID" />
+          </Key>
+          <Property Name="order_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="clint_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="clint_phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="clint_address" Type="nvarchar(max)" />
+          <Property Name="user_ID" Type="int" />
+          <Property Name="service_ID" Type="int" />
+          <Property Name="order_amount" Type="int" />
+          <Property Name="order_status" Type="nvarchar" MaxLength="50" />
+          <Property Name="order_fulfiller" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_amount" Type="int" />
+          <Property Name="order_number" Type="varchar" MaxLength="50" />
+          <Property Name="dateOfOrder" Type="date" />
+          <Property Name="trackingId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Admin_amount" Type="int" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="role_ID" />
+          </Key>
+          <Property Name="role_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="role_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="role_field1" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="service_ID" />
+          </Key>
+          <Property Name="service_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="service_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="service_rate" Type="int" />
+          <Property Name="category_ID" Type="int" />
+          <Property Name="service_field1" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Service_Category">
+          <Key>
+            <PropertyRef Name="category_ID" />
+          </Key>
+          <Property Name="category_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="category_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="category_field1" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Shopkeeper">
+          <Key>
+            <PropertyRef Name="shopkeeper_ID" />
+          </Key>
+          <Property Name="shopkeeper_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="shopkeeper_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_fname" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_shopname" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_shopaddress" Type="nvarchar(max)" />
+          <Property Name="shopkeeper_email" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_phoneno" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_bank_account" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_password" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_commission" Type="int" />
+          <Property Name="shopkeeper_field1" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_field2" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="user_ID" />
+          </Key>
+          <Property Name="user_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="user_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_email" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="user_password" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_fname" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_shopname" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_shopaddress" Type="nvarchar(max)" />
+          <Property Name="shopkeeper_bank_name" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_bank_branch" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_bank_account" Type="nvarchar" MaxLength="50" />
+          <Property Name="shopkeeper_commission" Type="nchar" MaxLength="10" />
+          <Property Name="role_ID" Type="int" />
+          <Property Name="userStatus" Type="nvarchar" MaxLength="50" />
+          <Property Name="cnic" Type="nvarchar(max)" />
+          <Property Name="city" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Function Name="OrdertrackingNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="date" Type="date" Mode="In" />
+        </Function>
+        <Function Name="sp_GetOrderCountByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_getOrdersComplaint" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="status" Type="varchar" Mode="In" />
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_GetOrdersGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="status" Type="varchar" Mode="In" />
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_OrdersPayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="status" Type="varchar" Mode="In" />
+          <Parameter Name="userId" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_OrdersPaymentByUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="status" Type="varchar" Mode="In" />
+          <Parameter Name="userId" Type="varchar(max)" Mode="In" />
+        </Function>
+        <EntityContainer Name="MECProjectDBModelStoreContainer">
+          <EntitySet Name="Complaints" EntityType="Self.Complaints" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Income" EntityType="Self.Income" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service_Category" EntityType="Self.Service_Category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Shopkeeper" EntityType="Self.Shopkeeper" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MECProjectDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Complaint">
+          <Key>
+            <PropertyRef Name="complaint_ID" />
+          </Key>
+          <Property Name="complaint_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_ID" Type="Int32" />
+          <Property Name="order_resson" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="complaint_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="complaint_field1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="complaint_field2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Income">
+          <Key>
+            <PropertyRef Name="income_ID" />
+          </Key>
+          <Property Name="income_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="order_ID" Type="Int32" />
+          <Property Name="recived_amount" Type="Int32" />
+          <Property Name="expected_amount" Type="Int32" />
+          <Property Name="income_field1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="income_field2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="order_ID" />
+          </Key>
+          <Property Name="order_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="clint_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clint_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="clint_address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="user_ID" Type="Int32" />
+          <Property Name="service_ID" Type="Int32" />
+          <Property Name="order_amount" Type="Int32" />
+          <Property Name="order_status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="order_fulfiller" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_amount" Type="Int32" />
+          <Property Name="order_number" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="dateOfOrder" Type="DateTime" Precision="0" />
+          <Property Name="trackingId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Admin_amount" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="role_ID" />
+          </Key>
+          <Property Name="role_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="role_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="role_field1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="service_ID" />
+          </Key>
+          <Property Name="service_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="service_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="service_rate" Type="Int32" />
+          <Property Name="category_ID" Type="Int32" />
+          <Property Name="service_field1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Service_Category">
+          <Key>
+            <PropertyRef Name="category_ID" />
+          </Key>
+          <Property Name="category_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="category_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="category_field1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Shopkeeper">
+          <Key>
+            <PropertyRef Name="shopkeeper_ID" />
+          </Key>
+          <Property Name="shopkeeper_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="shopkeeper_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_shopname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_shopaddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_phoneno" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_bank_account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_commission" Type="Int32" />
+          <Property Name="shopkeeper_field1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_field2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="user_ID" />
+          </Key>
+          <Property Name="user_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="user_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="user_password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_fname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_shopname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_shopaddress" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_bank_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_bank_branch" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_bank_account" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="shopkeeper_commission" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="role_ID" Type="Int32" />
+          <Property Name="userStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="cnic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="city" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="MECProjectDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Complaints" EntityType="Self.Complaint" />
+          <EntitySet Name="Incomes" EntityType="Self.Income" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Roles" EntityType="Self.Role" />
+          <EntitySet Name="Services" EntityType="Self.Service" />
+          <EntitySet Name="Service_Category" EntityType="Self.Service_Category" />
+          <EntitySet Name="Shopkeepers" EntityType="Self.Shopkeeper" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <FunctionImport Name="OrdertrackingNumber" ReturnType="Collection(MECProjectDBModel.OrdertrackingNumber_Result)">
+            <Parameter Name="date" Mode="In" Type="DateTime" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetOrderCountByStatus" ReturnType="Collection(Int32)">
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_getOrdersComplaint" ReturnType="Collection(MECProjectDBModel.sp_getOrdersComplaint_Result)">
+            <Parameter Name="status" Mode="In" Type="String" />
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GetOrdersGrid" ReturnType="Collection(MECProjectDBModel.sp_GetOrdersGrid_Result)">
+            <Parameter Name="status" Mode="In" Type="String" />
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_OrdersPayment" ReturnType="Collection(Int32)">
+            <Parameter Name="status" Mode="In" Type="String" />
+            <Parameter Name="userId" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_OrdersPaymentByUsers" ReturnType="Collection(MECProjectDBModel.sp_OrdersPaymentByUsers_Result)">
+            <Parameter Name="status" Mode="In" Type="String" />
+            <Parameter Name="userId" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="OrdertrackingNumber_Result">
+          <Property Type="Int32" Name="order_ID" Nullable="false" />
+          <Property Type="String" Name="clint_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="clint_phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="clint_address" Nullable="true" />
+          <Property Type="Int32" Name="user_ID" Nullable="true" />
+          <Property Type="Int32" Name="service_ID" Nullable="true" />
+          <Property Type="Int32" Name="order_amount" Nullable="true" />
+          <Property Type="String" Name="order_status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="order_fulfiller" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="shopkeeper_amount" Nullable="true" />
+          <Property Type="String" Name="order_number" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="dateOfOrder" Nullable="true" />
+          <Property Type="String" Name="trackingId" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Admin_amount" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_getOrdersComplaint_Result">
+          <Property Type="Int32" Name="complaint_ID" Nullable="false" />
+          <Property Type="Int32" Name="order_ID" Nullable="true" />
+          <Property Type="String" Name="order_resson" Nullable="true" />
+          <Property Type="String" Name="complaint_status" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="complaint_field1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="complaint_field2" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_GetOrdersGrid_Result">
+          <Property Type="Int32" Name="user_ID" Nullable="false" />
+          <Property Type="String" Name="user_name" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="order_ID" Nullable="false" />
+          <Property Type="String" Name="trackingId" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="dateOfOrder" Nullable="true" />
+          <Property Type="String" Name="clint_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="clint_phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="clint_address" Nullable="true" />
+          <Property Type="Int32" Name="order_amount" Nullable="true" />
+          <Property Type="String" Name="order_status" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="service_ID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_OrdersPaymentByUsers_Result">
+          <Property Type="Int32" Name="order_ID" Nullable="false" />
+          <Property Type="Int32" Name="totalShopkeerAmount" Nullable="true" />
+          <Property Type="String" Name="trackingId" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="Admin_amount" Nullable="true" />
+          <Property Type="Int32" Name="shopkeeper_amount" Nullable="true" />
+          <Property Type="DateTime" Name="dateOfOrder" Nullable="true" />
+          <Property Type="String" Name="clint_name" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="clint_phone" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="clint_address" Nullable="true" />
+          <Property Type="Int32" Name="order_amount" Nullable="true" />
+          <Property Type="String" Name="order_status" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="service_ID" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MECProjectDBModelStoreContainer" CdmEntityContainer="MECProjectDBEntities">
+          <EntitySetMapping Name="Complaints">
+            <EntityTypeMapping TypeName="MECProjectDBModel.Complaint">
+              <MappingFragment StoreEntitySet="Complaints">
+                <ScalarProperty Name="complaint_ID" ColumnName="complaint_ID" />
+                <ScalarProperty Name="order_ID" ColumnName="order_ID" />
+                <ScalarProperty Name="order_resson" ColumnName="order_resson" />
+                <ScalarProperty Name="complaint_status" ColumnName="complaint_status" />
+                <ScalarProperty Name="complaint_field1" ColumnName="complaint_field1" />
+                <ScalarProperty Name="complaint_field2" ColumnName="complaint_field2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Incomes">
+            <EntityTypeMapping TypeName="MECProjectDBModel.Income">
+              <MappingFragment StoreEntitySet="Income">
+                <ScalarProperty Name="income_ID" ColumnName="income_ID" />
+                <ScalarProperty Name="order_ID" ColumnName="order_ID" />
+                <ScalarProperty Name="recived_amount" ColumnName="recived_amount" />
+                <ScalarProperty Name="expected_amount" ColumnName="expected_amount" />
+                <ScalarProperty Name="income_field1" ColumnName="income_field1" />
+                <ScalarProperty Name="income_field2" ColumnName="income_field2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="MECProjectDBModel.Order">
+              <MappingFragment StoreEntitySet="Orders">
+                <ScalarProperty Name="order_ID" ColumnName="order_ID" />
+                <ScalarProperty Name="clint_name" ColumnName="clint_name" />
+                <ScalarProperty Name="clint_phone" ColumnName="clint_phone" />
+                <ScalarProperty Name="clint_address" ColumnName="clint_address" />
+                <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+                <ScalarProperty Name="service_ID" ColumnName="service_ID" />
+                <ScalarProperty Name="order_amount" ColumnName="order_amount" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+                <ScalarProperty Name="order_fulfiller" ColumnName="order_fulfiller" />
+                <ScalarProperty Name="shopkeeper_amount" ColumnName="shopkeeper_amount" />
+                <ScalarProperty Name="order_number" ColumnName="order_number" />
+                <ScalarProperty Name="dateOfOrder" ColumnName="dateOfOrder" />
+                <ScalarProperty Name="trackingId" ColumnName="trackingId" />
+                <ScalarProperty Name="Admin_amount" ColumnName="Admin_amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="MECProjectDBModel.Role">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="role_ID" ColumnName="role_ID" />
+                <ScalarProperty Name="role_name" ColumnName="role_name" />
+                <ScalarProperty Name="role_field1" ColumnName="role_field1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="MECProjectDBModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="service_ID" ColumnName="service_ID" />
+                <ScalarProperty Name="service_name" ColumnName="service_name" />
+                <ScalarProperty Name="service_rate" ColumnName="service_rate" />
+                <ScalarProperty Name="category_ID" ColumnName="category_ID" />
+                <ScalarProperty Name="service_field1" ColumnName="service_field1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Service_Category">
+            <EntityTypeMapping TypeName="MECProjectDBModel.Service_Category">
+              <MappingFragment StoreEntitySet="Service_Category">
+                <ScalarProperty Name="category_ID" ColumnName="category_ID" />
+                <ScalarProperty Name="category_name" ColumnName="category_name" />
+                <ScalarProperty Name="category_field1" ColumnName="category_field1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Shopkeepers">
+            <EntityTypeMapping TypeName="MECProjectDBModel.Shopkeeper">
+              <MappingFragment StoreEntitySet="Shopkeeper">
+                <ScalarProperty Name="shopkeeper_ID" ColumnName="shopkeeper_ID" />
+                <ScalarProperty Name="shopkeeper_name" ColumnName="shopkeeper_name" />
+                <ScalarProperty Name="shopkeeper_fname" ColumnName="shopkeeper_fname" />
+                <ScalarProperty Name="shopkeeper_shopname" ColumnName="shopkeeper_shopname" />
+                <ScalarProperty Name="shopkeeper_shopaddress" ColumnName="shopkeeper_shopaddress" />
+                <ScalarProperty Name="shopkeeper_email" ColumnName="shopkeeper_email" />
+                <ScalarProperty Name="shopkeeper_phoneno" ColumnName="shopkeeper_phoneno" />
+                <ScalarProperty Name="shopkeeper_bank_account" ColumnName="shopkeeper_bank_account" />
+                <ScalarProperty Name="shopkeeper_password" ColumnName="shopkeeper_password" />
+                <ScalarProperty Name="shopkeeper_commission" ColumnName="shopkeeper_commission" />
+                <ScalarProperty Name="shopkeeper_field1" ColumnName="shopkeeper_field1" />
+                <ScalarProperty Name="shopkeeper_field2" ColumnName="shopkeeper_field2" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="MECProjectDBModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="user_email" ColumnName="user_email" />
+                <ScalarProperty Name="user_phone" ColumnName="user_phone" />
+                <ScalarProperty Name="user_password" ColumnName="user_password" />
+                <ScalarProperty Name="shopkeeper_fname" ColumnName="shopkeeper_fname" />
+                <ScalarProperty Name="shopkeeper_shopname" ColumnName="shopkeeper_shopname" />
+                <ScalarProperty Name="shopkeeper_shopaddress" ColumnName="shopkeeper_shopaddress" />
+                <ScalarProperty Name="shopkeeper_bank_name" ColumnName="shopkeeper_bank_name" />
+                <ScalarProperty Name="shopkeeper_bank_branch" ColumnName="shopkeeper_bank_branch" />
+                <ScalarProperty Name="shopkeeper_bank_account" ColumnName="shopkeeper_bank_account" />
+                <ScalarProperty Name="shopkeeper_commission" ColumnName="shopkeeper_commission" />
+                <ScalarProperty Name="role_ID" ColumnName="role_ID" />
+                <ScalarProperty Name="userStatus" ColumnName="userStatus" />
+                <ScalarProperty Name="cnic" ColumnName="cnic" />
+                <ScalarProperty Name="city" ColumnName="city" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="OrdertrackingNumber" FunctionName="MECProjectDBModel.Store.OrdertrackingNumber">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MECProjectDBModel.OrdertrackingNumber_Result">
+                <ScalarProperty Name="order_ID" ColumnName="order_ID" />
+                <ScalarProperty Name="clint_name" ColumnName="clint_name" />
+                <ScalarProperty Name="clint_phone" ColumnName="clint_phone" />
+                <ScalarProperty Name="clint_address" ColumnName="clint_address" />
+                <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+                <ScalarProperty Name="service_ID" ColumnName="service_ID" />
+                <ScalarProperty Name="order_amount" ColumnName="order_amount" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+                <ScalarProperty Name="order_fulfiller" ColumnName="order_fulfiller" />
+                <ScalarProperty Name="shopkeeper_amount" ColumnName="shopkeeper_amount" />
+                <ScalarProperty Name="order_number" ColumnName="order_number" />
+                <ScalarProperty Name="dateOfOrder" ColumnName="dateOfOrder" />
+                <ScalarProperty Name="trackingId" ColumnName="trackingId" />
+                <ScalarProperty Name="Admin_amount" ColumnName="Admin_amount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetOrderCountByStatus" FunctionName="MECProjectDBModel.Store.sp_GetOrderCountByStatus" />
+          <FunctionImportMapping FunctionImportName="sp_getOrdersComplaint" FunctionName="MECProjectDBModel.Store.sp_getOrdersComplaint">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MECProjectDBModel.sp_getOrdersComplaint_Result">
+                <ScalarProperty Name="complaint_ID" ColumnName="complaint_ID" />
+                <ScalarProperty Name="order_ID" ColumnName="order_ID" />
+                <ScalarProperty Name="order_resson" ColumnName="order_resson" />
+                <ScalarProperty Name="complaint_status" ColumnName="complaint_status" />
+                <ScalarProperty Name="complaint_field1" ColumnName="complaint_field1" />
+                <ScalarProperty Name="complaint_field2" ColumnName="complaint_field2" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_GetOrdersGrid" FunctionName="MECProjectDBModel.Store.sp_GetOrdersGrid">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MECProjectDBModel.sp_GetOrdersGrid_Result">
+                <ScalarProperty Name="user_ID" ColumnName="user_ID" />
+                <ScalarProperty Name="user_name" ColumnName="user_name" />
+                <ScalarProperty Name="order_ID" ColumnName="order_ID" />
+                <ScalarProperty Name="trackingId" ColumnName="trackingId" />
+                <ScalarProperty Name="dateOfOrder" ColumnName="dateOfOrder" />
+                <ScalarProperty Name="clint_name" ColumnName="clint_name" />
+                <ScalarProperty Name="clint_phone" ColumnName="clint_phone" />
+                <ScalarProperty Name="clint_address" ColumnName="clint_address" />
+                <ScalarProperty Name="order_amount" ColumnName="order_amount" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+                <ScalarProperty Name="service_ID" ColumnName="service_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_OrdersPayment" FunctionName="MECProjectDBModel.Store.sp_OrdersPayment" />
+          <FunctionImportMapping FunctionImportName="sp_OrdersPaymentByUsers" FunctionName="MECProjectDBModel.Store.sp_OrdersPaymentByUsers">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MECProjectDBModel.sp_OrdersPaymentByUsers_Result">
+                <ScalarProperty Name="order_ID" ColumnName="order_ID" />
+                <ScalarProperty Name="totalShopkeerAmount" ColumnName="totalShopkeerAmount" />
+                <ScalarProperty Name="trackingId" ColumnName="trackingId" />
+                <ScalarProperty Name="Admin_amount" ColumnName="Admin_amount" />
+                <ScalarProperty Name="shopkeeper_amount" ColumnName="shopkeeper_amount" />
+                <ScalarProperty Name="dateOfOrder" ColumnName="dateOfOrder" />
+                <ScalarProperty Name="clint_name" ColumnName="clint_name" />
+                <ScalarProperty Name="clint_phone" ColumnName="clint_phone" />
+                <ScalarProperty Name="clint_address" ColumnName="clint_address" />
+                <ScalarProperty Name="order_amount" ColumnName="order_amount" />
+                <ScalarProperty Name="order_status" ColumnName="order_status" />
+                <ScalarProperty Name="service_ID" ColumnName="service_ID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,140 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MECProjectDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Complaints">
+    <Key>
+      <PropertyRef Name="complaint_ID" />
+    </Key>
+    <Property Name="complaint_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_ID" Type="int" />
+    <Property Name="order_resson" Type="nvarchar(max)" />
+    <Property Name="complaint_status" Type="nvarchar" MaxLength="50" />
+    <Property Name="complaint_field1" Type="nvarchar" MaxLength="50" />
+    <Property Name="complaint_field2" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Income">
+    <Key>
+      <PropertyRef Name="income_ID" />
+    </Key>
+    <Property Name="income_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="order_ID" Type="int" />
+    <Property Name="recived_amount" Type="int" />
+    <Property Name="expected_amount" Type="int" />
+    <Property Name="income_field1" Type="nvarchar" MaxLength="50" />
+    <Property Name="income_field2" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Orders">
+    <Key>
+      <PropertyRef Name="order_ID" />
+    </Key>
+    <Property Name="order_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="clint_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="clint_phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="clint_address" Type="nvarchar(max)" />
+    <Property Name="user_ID" Type="int" />
+    <Property Name="service_ID" Type="int" />
+    <Property Name="order_amount" Type="int" />
+    <Property Name="order_status" Type="nvarchar" MaxLength="50" />
+    <Property Name="order_fulfiller" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_amount" Type="int" />
+    <Property Name="order_number" Type="varchar" MaxLength="50" />
+    <Property Name="dateOfOrder" Type="date" />
+    <Property Name="trackingId" Type="nvarchar" MaxLength="50" />
+    <Property Name="Admin_amount" Type="int" />
+  </EntityType>
+  <EntityType Name="Roles">
+    <Key>
+      <PropertyRef Name="role_ID" />
+    </Key>
+    <Property Name="role_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="role_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="role_field1" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Service">
+    <Key>
+      <PropertyRef Name="service_ID" />
+    </Key>
+    <Property Name="service_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="service_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="service_rate" Type="int" />
+    <Property Name="category_ID" Type="int" />
+    <Property Name="service_field1" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Service_Category">
+    <Key>
+      <PropertyRef Name="category_ID" />
+    </Key>
+    <Property Name="category_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="category_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="category_field1" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Shopkeeper">
+    <Key>
+      <PropertyRef Name="shopkeeper_ID" />
+    </Key>
+    <Property Name="shopkeeper_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="shopkeeper_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_fname" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_shopname" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_shopaddress" Type="nvarchar(max)" />
+    <Property Name="shopkeeper_email" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_phoneno" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_bank_account" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_password" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_commission" Type="int" />
+    <Property Name="shopkeeper_field1" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_field2" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="user_ID" />
+    </Key>
+    <Property Name="user_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="user_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="user_email" Type="nvarchar" MaxLength="50" />
+    <Property Name="user_phone" Type="nvarchar" MaxLength="50" />
+    <Property Name="user_password" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_fname" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_shopname" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_shopaddress" Type="nvarchar(max)" />
+    <Property Name="shopkeeper_bank_name" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_bank_branch" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_bank_account" Type="nvarchar" MaxLength="50" />
+    <Property Name="shopkeeper_commission" Type="nchar" MaxLength="10" />
+    <Property Name="role_ID" Type="int" />
+    <Property Name="userStatus" Type="nvarchar" MaxLength="50" />
+    <Property Name="cnic" Type="nvarchar(max)" />
+    <Property Name="city" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <Function Name="OrdertrackingNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="date" Type="date" Mode="In" />
+  </Function>
+  <Function Name="sp_GetOrderCountByStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="userId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_getOrdersComplaint" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="status" Type="varchar" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_GetOrdersGrid" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="status" Type="varchar" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_OrdersPayment" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="status" Type="varchar" Mode="In" />
+    <Parameter Name="userId" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_OrdersPaymentByUsers" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="status" Type="varchar" Mode="In" />
+    <Parameter Name="userId" Type="varchar(max)" Mode="In" />
+  </Function>
+  <EntityContainer Name="MECProjectDBModelStoreContainer">
+    <EntitySet Name="Complaints" EntityType="Self.Complaints" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Income" EntityType="Self.Income" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Orders" EntityType="Self.Orders" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Service_Category" EntityType="Self.Service_Category" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Shopkeeper" EntityType="Self.Shopkeeper" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

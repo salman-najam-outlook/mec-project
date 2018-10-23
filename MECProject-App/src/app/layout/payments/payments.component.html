@@ -1,0 +1,42 @@
+<div [@routerTransition]>
+    <app-alert></app-alert>
+    <div class="row">
+        <div class="col col-xl-12 col-lg-12">
+            <div class="card mb-12">
+                <div class="card-header">Payments
+                    <label *ngIf="user?.Roleid == 1" class="float-right">Total:&nbsp;<b>Rs.{{paymentOrderList.adminTotal
+                            | number}}/-</b></label>
+                    <label *ngIf="user?.Roleid == 3" class="float-right">Total:&nbsp;<b>Rs.{{paymentOrderList.shopkeeperTotal
+                            | number}}/-</b></label>
+
+                </div>
+                <table class="card-body table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Tracking Id</th>
+                            <th>Shopkeeper Name</th>
+                            <th>Total Payment</th>
+                            <th>Payment Receivable</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let x of paymentOrderListshow | paginate: { itemsPerPage: 10, currentPage: p }, let i = index">
+                            <td>{{x.trackingId}}</td>
+                            <td>{{x.user_name}}</td>
+                            <td>Rs.{{x.order_amount | number}}/-</td>
+                            <td *ngIf="user?.Roleid == 1">Rs.{{x.Admin_amount | number}}/-</td>
+                            <td *ngIf="user?.Roleid == 3">Rs.{{x.shopkeeper_amount | number}}/-</td>
+                            <td>{{paymentStatus}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div *ngIf="paymentOrderListshow?.length == 0" style="text-align: center; color:#dc3545">
+                    <p>No payments are available against this status!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>

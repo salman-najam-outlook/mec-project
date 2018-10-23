@@ -1,0 +1,22 @@
+<div [@routerTransition]>
+    <app-alert></app-alert>
+    <h3>Create A New Complaint</h3>
+    <form role="form" novalidate [formGroup]="form" (ngSubmit)="onOrderFormSubmit()">
+        <div class="row">
+            <div class="col col-xl-12 col-lg-12">
+                <fieldset class="form-group">
+                    <label>Order Number:</label>
+                    <input formControlName="ordernumber" class="form-control" placeholder="Order Number">
+                </fieldset>
+                <fieldset class="form-group">
+                    <label>Complaint's Details:</label>
+                    <input formControlName="reason" class="form-control" placeholder="Reason">
+                </fieldset>
+                <fieldset class="form-group">
+                    <div class="hidden-xs" style="margin-top:45px;"></div>
+                    <button type="submit" class="btn btn-md btn-success pull-left" [disabled]="form.invalid">Submit</button>
+                </fieldset>
+            </div>
+        </div>
+    </form>
+</div>
